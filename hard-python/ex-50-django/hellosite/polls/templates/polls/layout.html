@@ -1,0 +1,29 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>
+            {% block title %}
+                Random Title
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" href="{% static "polls/style.css" %}">
+    </head>
+    <body>
+        <nav>
+            {% block navigation %}
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/polls">Polls Home</a>
+                </li>
+            </ul>
+            {% endblock %}
+        </nav>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

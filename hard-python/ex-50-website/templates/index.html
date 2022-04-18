@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <title>Gothons of Planet Percal #25</title>
+    <style>
+        .hello {
+            font-family: "Helvetica", "sans-serif";
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/foo">Foo</a></li>
+            </ul>
+        </nav>
+
+        {% if greeting %}
+            <div>
+                <span>I just wanted to say</span>
+                <em class="hello">{{ greeting }}</em>
+            </div>
+        {% else %}
+            <div class="hello">
+                Hello, world!
+            </div>
+        {% endif %}
+    </body>
+</html>

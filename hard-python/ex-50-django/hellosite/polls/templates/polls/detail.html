@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Polls Detail Page</title>
+    </head>
+    <body>
+        {% if question %}
+            <form method="POST" action="{% url "polls:vote" question.id %}">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>{{ question.question_text|title }}</legend>
+
+                    {% if error_message %}
+                        <p><strong>
+                            {{ error_message }}
+                        </strong></p>
+                    {% endif %}
+
+                    {% for choice in question.choice_set.all %}
+                        <label for="choice{{ forloop.counter }}">
+                            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                            <span>{{ choice.choice_text }}</span>
+                        </label>
+                    {% endfor %}
+                </fieldset>
+                <button type="submit">Vote</button>
+            </form>
+        {% endif %}
+    </body>
+</html>

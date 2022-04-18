@@ -1,0 +1,40 @@
+{% extends "polls/layout.html" %}
+
+{% block title %}
+
+{% if name %}
+{{ name }}'s Home Page
+{% else %}
+Home Page
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div>Welcome home.</div>
+
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <li>
+                <a href="{% url "polls:detail" question.id %}">
+                    {{ question.question_text }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<script>
+async function json() {
+    var data = await fetch("/api/questions/").then(request => request.json())
+    
+    for(let [key, value] of Object.entries(data)) {
+        console.log(`${key}: ${value}`)
+    }
+}
+json()
+</script>
+{% endblock %}
